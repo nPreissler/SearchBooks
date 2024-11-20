@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros Encontrados</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .book { margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; }
+        .title { font-weight: bold; font-size: 1.2em; }
+        .authors { color: #555; }
+        .description { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Livros Encontrados</h1>
+    <div class="form-container">
+        <form action="/" method="get">
+            <input type="text" name="query" placeholder="Digite um termo de pesquisa" value="{{ query }}" required>
+            <button type="submit">Pesquisar</button>
+        </form>
+    </div>
+    {% if books %}
+        {% for book in books %}
+        <div class="book">
+            <div class="title">{{ book.title }}</div>
+            <div class="authors">Autores: {{ book.authors | join(', ') }}</div>
+            <div class="description">Descrição: {{ book.description }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum livro encontrado.</p>
+    {% endif %}
+</body>
+</html>
